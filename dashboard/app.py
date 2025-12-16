@@ -1,12 +1,17 @@
 
 from flask import Flask, render_template
 import sqlite3
+import os
+base = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(base, "..", "waf", "logs.db")
+
+
 
 app = Flask(__name__)
 
 @app.route("/")
 def logs():
-    conn = sqlite3.connect("../waf/logs.db")
+    conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute("SELECT timestamp, ip, path, status, reason FROM waf_logs ORDER BY id DESC")
     rows = cur.fetchall()
