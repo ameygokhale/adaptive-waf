@@ -1,1 +1,5 @@
-{}
+{
+    "block_patterns": [],
+    "restricted_paths": [],
+    "rate_limit": {}
+}
